@@ -1,36 +1,35 @@
-
-export const getGoals = () => {
-    return fetch("http://localhost:8000/goals", {
+export const getRoutines = () => {
+    return fetch("http://localhost:8000/routines", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lockedin_user")}`
         }
     })
         .then(response => response.json())
 }
-export const createGoal = (goal) => {
-    return fetch("http://localhost:8000/goals", {
+export const createRoutine = (routine) => {
+    return fetch("http://localhost:8000/routines", {
         method: "POST", 
         headers:{
             "Authorization":`Token ${localStorage.getItem("lockedin_user")}`,
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(goal)
+        body: JSON.stringify(routine)
     })
 }
 
-export const UpdateGoal = (goal, goalId) => {
-    return fetch(`http://localhost:8000/goals/${goalId}`, {
+export const updateRoutine = (routine, routineId) => {
+    return fetch(`http://localhost:8000/routines/${routineId}`, {
         method: "PUT", 
         headers:{
             "Authorization":`Token ${localStorage.getItem("lockedin_user")}`,
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(goal)
+        body: JSON.stringify(routine)
     })
 }
 
-export const getSingleGame = (gameId) => {
-    return fetch(`http://localhost:8000/games/${gameId}`, {
+export const getSingleRoutine = (routineId) => {
+    return fetch(`http://localhost:8000/routines/${routineId}`, {
         method: "GET",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lockedin_user")}`
@@ -39,8 +38,8 @@ export const getSingleGame = (gameId) => {
         .then(response => response.json())
 }
 
-export const deleteGoal = (id) => {
-    return fetch(`http://localhost:8000/goals/${id}`, 
+export const deleteRoutine = (id) => {
+    return fetch(`http://localhost:8000/routines/${id}`, 
     {
         method: "DELETE",
         headers:{

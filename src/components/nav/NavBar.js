@@ -7,14 +7,10 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/tickets">Tickets</Link>
-            </li>
-            <li className="navbar__item active">
                 <Link className="navbar__link" to="/home">Home</Link>
             </li>
-
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/learning">Learning</Link>
+                <Link className="navbar__link" to="/exercises">exercises</Link>
             </li>
 
             <li className="navbar__item active">
@@ -22,13 +18,9 @@ export const NavBar = () => {
             </li>
 
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/posts">Community Posts</Link>
+                <Link className="navbar__link" to="/resources">Resources</Link>
             </li>
 
-          
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/resources">Community Resources</Link>
-            </li>
 
 
             {

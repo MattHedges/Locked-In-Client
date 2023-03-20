@@ -7,31 +7,30 @@ export const Register = () => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
-    const organization =useRef()
+    const email = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
     const navigate = useNavigate()
-    const [isTicketHolder, setIsTicketHolder] = useState(false)
+
 
     const handleRegister = (e) => {
         e.preventDefault()
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "username": username.current.value,
-                "first_name": firstName.current.value,
-                "last_name": lastName.current.value,
-                "password": password.current.value,
-                "organization": organization.current.value,
-                "isTicketHolder": isTicketHolder
+                username: username.current.value,
+                first_name: firstName.current.value,
+                last_name: lastName.current.value,
+                password: password.current.value,
+                email: email.current.value
                 
             }
 
             registerUser(newUser)
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("gg_user", res.token)
+                        localStorage.setItem("lockedin_user", res.token)
                         navigate("/login")
                     }
                 })
@@ -52,11 +51,15 @@ export const Register = () => {
                 <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
-                    <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
+                    <input ref={firstName} type="text"  className="form-control" placeholder="First name" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="email"> Email </label>
+                    <input ref={email} type="text" name="email" className="form-control" placeholder="Email" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputUsername">Username</label>

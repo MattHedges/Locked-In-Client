@@ -1,132 +1,121 @@
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import "./Contribute.css"
-export const ContributeForm = () => {
-    const navigate = useNavigate()
-    /*
-        TODO: Add the correct default properties to the
-        initial state object
-    */
-    const [topics, updateTopics] = useState([])
-    const [exercise, updateExercise] = useState({
-        userId: 0,
-        description: "",
-        difficulty: 0,
-        muscleGroup: "",
-        equipment: 0,
-        video: "",
-            
-    })
-    /*
-        TODO: Use the useNavigation() hook so you can redirect
-        the user to the ticket list
-    */
-
-    const localLockedInUser = localStorage.getItem("lockedin_user")
-    const LockedInUserObject = JSON.parse(localLockedInUser)
-
-    useEffect(() => {
-    fetch(`http://localhost:8088/topics`)
-    .then(response => response.json())
-    .then((topicsArray) => {
-        updateTopics(topicsArray)
-    })
-    
-},
-[] // When this array is empty, you are observing initial component state
-    )
+// import { useState, useEffect } from "react"
+// import { useNavigate } from 'react-router-dom'
+// import { createExercise } from "../../managers/ExerciseManager"
+// import { getEquipment } from "../../managers/EquipmentManager"
+// import { getDifficulty } from "../../managers/DifficultyManager"
+// import { getMuscleGroups } from "../../managers/ExerciseManager"
 
 
-    
-    
-    const handleSaveButtonClick = (event) => {
-        event.preventDefault()
+
+// export const ContributeForm = () => {
+//     const navigate = useNavigate()
+//     const [equipment, setEquipment] = useState([])
+//     const [difficulty, setDifficulty] = useState([])
+//     const [muscleGroups, setMuscleGroups] = useState([])
+//     const [currentExercise, setCurrentExercise] = useState({
+//         name: "",
+//         description: "",
+//         genre: 0
+//     })
+
+//     useEffect(() => {
+//         getEquipment().then(res => setEquipment(res))
+//     }, [])
+
+//     useEffect(() => {
+//         getDifficulty().then(res => setDifficulty(res))
+//     }, [])
+
+//     useEffect(() => {
+//         getMuscleGroups().then(res => setMuscleGroups(res))
+//     }, [])
+
+//     const changeGameState = (event) => {
+//         const copy = { ...currentExercise }
+//         copy[event.target.name] = event.target.value
+//         setCurrentExercise(copy)
+//     }
+
+//     return (
+//         <form className="gameForm">
+//             <h2 className="gameForm__title">Register New Game</h2>
+//             <fieldset>
+//                 <div className="form-group">
+//                     <label htmlFor="name">Game Name: </label>
+//                     <input type="text" name="name" required autoFocus className="form-control"
+//                         value={currentGame.name}
+//                         onChange={changeGameState}
+//                     />
+//                 </div>
+//             </fieldset>
+//             <fieldset>
+//                 <div className="form-group">
+//                     <label htmlFor="description">Game Description: </label>
+//                     <input type="text" name="description" required className="form-control"
+//                         value={currentGame.description}
+//                         onChange={changeGameState}
+//                     />
+//                 </div>
+//             </fieldset>
+//             <fieldset>
+//                 <div className="form-group">
+//                 <label className="label">Genre of Game: </label>
+//                 <select
+//                         name="genre"
+//                         className="form-control"
+//                         value={currentGame.game_type}
+//                         onChange={(event) => {
+//                             const copy = { ...currentGame }
+//                             copy.genre = parseInt(event.target.value)
+//                             setCurrentGame(copy)
+//                         }}>
+//                         <option value="0">Choose:</option>
+//                         {genres.map(genre => ( 
+//                                     <option key={`genre--${genre.id}`} value={genre.id} name={genre.genre}>{genre.genre}</option>                         
+//                             ))}
+//                     </select>
+//                 </div>
+//             </fieldset>
 
 
-        // TODO: Create the object to be saved to the API
-        const postToSendToAPI = {
-            userId: LockedInUserObject.id,
-            isPost: post.isPost,
-            topicId: post.topicId,
-            dateSubmitted: new Date(),
-            content: post.content,
-            isApproved: false,
-            anonymous: false,
-            moderatorId: post.userId
-        }
+//             <button type="submit"
+//                 onClick={evt => {
+//                     // Prevent form from being submitted
+//                     evt.preventDefault()
 
-        // TODO: Perform the fetch() to POST the object to the API
-        return fetch(`http://localhost:8000/exercises` , {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json"
-        },
-            body: JSON.stringify(postToSendToAPI)
-    })
-        .then(response => response.json())
-        .then(() => { 
-            // put if else statement here to route to specific page using navigate
-            navigate("/exercises")
-        })   
-        }
+//                     const game = {
+//                         name: currentGame.name,
+//                         description: currentGame.description,
+//                         genre: currentGame.genre
+//                     }
 
-    return (
-        <form className="contributeForm">
-            <h1 className="contributeForm__title">Contribute</h1>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="content">Name of Exercise:</label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="form-control"
-                        placeholder="Insert Content Here"
-                        value={exercise.content}
-                        onChange={
-                            (evt) => {
-                                const copy = {...post}
-                                copy.content = evt.target.value
-                                updatePost(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-            <div className="form-group">
-            <select onChange={(evt) => {
-                const copy = { ...post };
-                copy.topicId = parseInt(evt.target.value);
-                updatePost(copy);
-            }}>
-                <option value={0}>Choose a Topic</option>
-                {topics.map((topic) =>
-                <option key={`topicType--${topic.id}`} value={topic.id}>{topic.name}</option>
-                )
-                }
-            </select>
-        </div>
-        </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Community Post:</label>
-                    <input type="checkbox"
-                        value={post.isPost}
-                        onChange={
-                            (evt) => {
-                                // copy variable below creates a copy of existing state... shorthand notation for copying the existing state is {...ticket}
-                                const copy = {...post}
-                                // modifying the copy of the existing state. new value of description property should be whatever the current value of the input value is. whatever is currently in the input field
-                                copy.isPost = !post.isPost
-                                updatePost(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <button 
-                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-             className="button">
-                Submit Exercise
-            </button>
-        </form>
-    )
-}
+//                     // Send POST request to your API
+//                     createGame(game)
+//                         .then(() => navigate("/games"))
+//                 }}
+//                 className="btn btn-primary">Create</button>
+//         </form>
+//     )
+// }
+
+
+// // use this to create a dropdown of equipment, and muscle groups in form. see gameform from either level up or gamerrater app for potenital need of use effect statements
+// <fieldset>
+//                 <div className="form-group">
+//                 <label className="label">Timeframe: </label>
+//                 <select
+//                         name="timeframe"
+//                         className="form-control"
+//                         value={currentGame.game_type}
+//                         onChange={(event) => {
+//                             const copy = { ...currentGoal }
+//                             copy.genre = parseInt(event.target.value)
+//                             setCurrentGame(copy)
+//                         }}>
+//                         <option value="0">Choose:</option>
+//                         {genres.map(genre => ( 
+//                                     <option key={`genre--${genre.id}`} value={genre.id} name={genre.genre}>{genre.genre}</option>                         
+//                             ))}
+//                     </select>
+//                 </div>
+//             </fieldset>

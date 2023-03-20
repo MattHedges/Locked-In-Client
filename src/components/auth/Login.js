@@ -20,7 +20,8 @@ export const Login = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("lockedin_user", res.token)
-                    navigate("/ApplicationViews")
+                    localStorage.setItem("user", res.user)
+                    navigate("/home")
                 }
                 else {
                     invalidDialog.current.showModal()
