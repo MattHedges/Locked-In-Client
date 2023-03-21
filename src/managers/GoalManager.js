@@ -18,8 +18,8 @@ export const createGoal = (goal) => {
     })
 }
 
-export const UpdateGoal = (goal, goalId) => {
-    return fetch(`http://localhost:8000/goals/${goalId}`, {
+export const UpdateGoal = (goal, id) => {
+    return fetch(`http://localhost:8000/goals/${id}`, {
         method: "PUT", 
         headers:{
             "Authorization":`Token ${localStorage.getItem("lockedin_user")}`,
@@ -29,8 +29,8 @@ export const UpdateGoal = (goal, goalId) => {
     })
 }
 
-export const getSingleGame = (gameId) => {
-    return fetch(`http://localhost:8000/games/${gameId}`, {
+export const getSingleGoal = (id) => {
+    return fetch(`http://localhost:8000/goals/${id}`, {
         method: "GET",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lockedin_user")}`

@@ -3,10 +3,11 @@ import { getGoals } from "../../managers/GoalManager"
 import { getRoutines } from "../../managers/RoutineManager"
 import { useNavigate } from "react-router-dom"
 import { deleteGoal } from "../../managers/GoalManager"
-import { NavBar } from "../nav/NavBar"
+import { getSingleRoutine } from "../../managers/RoutineManager"
 
 export const Homepage = (props) => {
     const [ goals, setGoals ] = useState([])
+    const [routineList, setRoutineList] = useState([])
     const [ routines, setRoutines ] = useState([])
     const navigate = useNavigate()
 
@@ -16,6 +17,10 @@ export const Homepage = (props) => {
 
     useEffect(() => {
         getGoals().then(data => setGoals(data))
+    }, [])
+
+    useEffect(() => {
+        getSingleRoutine().then(data => setRoutineList(data))
     }, [])
 
     return  ( <>
@@ -43,6 +48,7 @@ export const Homepage = (props) => {
                 })
             }
         </article>
+
         <article className="routines">
         {
             routines.map(routine => {
