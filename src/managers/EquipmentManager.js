@@ -28,4 +28,3 @@ export const getSingleEquipment = (equipmentId) => {
     })
         .then(response => response.json())
 }
-

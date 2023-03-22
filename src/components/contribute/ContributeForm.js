@@ -141,6 +141,7 @@ export const ContributeForm = () => {
                         genre: currentExercise.genre,
                         muscleGroup: currentExercise.muscleGroup,
                         difficulty: currentExercise.difficulty,
+                        equipment: currentExercise.equipment,
                         video: currentExercise.video
                     }
 

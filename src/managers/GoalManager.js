@@ -48,3 +48,12 @@ export const deleteGoal = (id) => {
         }
     })
 }
+
+export const getGoalsByUser = (id) => {
+    return fetch(`http://localhost:8000/goals?user=${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lockedin_user")}`
+        }
+    })
+        .then(response => response.json())
+}

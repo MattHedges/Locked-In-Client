@@ -57,3 +57,13 @@ export const getMuscleGroups = () => {
     })
         .then(response => response.json())
 }
+
+export const getSingleMuscleGroups = (id) => {
+    return fetch(`http://localhost:8000/exercises?muscleGroup=${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lockedin_user")}`
+        }
+    })
+        .then(response => response.json())
+}
+

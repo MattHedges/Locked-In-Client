@@ -1,30 +1,39 @@
 import React, { useEffect, useState } from "react"
-import { getGoals } from "../../managers/GoalManager"
-import { getRoutines } from "../../managers/RoutineManager"
+import { getGoals, getGoalsByUser } from "../../managers/GoalManager"
+import { getRoutinesByUser, getSingleRoutineByUser } from "../../managers/RoutineManager"
 import { useNavigate } from "react-router-dom"
 import { deleteGoal } from "../../managers/GoalManager"
 import { getSingleRoutine } from "../../managers/RoutineManager"
+import { UpdateExerciseRoutine } from "../../managers/ExerciseRoutineManager"
+import { deleteRoutine } from "../../managers/RoutineManager"
 
 export const Homepage = (props) => {
-    const [ goals, setGoals ] = useState([])
-    const [routineList, setRoutineList] = useState([])
-    const [ routines, setRoutines ] = useState([])
     const navigate = useNavigate()
+    const [ goals, setGoals ] = useState([])
+    const [routineLists, setRoutineList] = useState([])
+    const [ routines, setRoutines ] = useState([])
+    const user = localStorage.getItem("user")
 
     useEffect(() => {
-        getRoutines().then(data => setRoutines(data))
+        getRoutinesByUser(user).then(data => setRoutineList(data))
     }, [])
 
     useEffect(() => {
-        getGoals().then(data => setGoals(data))
+        getGoalsByUser(user).then(data => setGoals(data))
     }, [])
 
-    useEffect(() => {
-        getSingleRoutine().then(data => setRoutineList(data))
-    }, [])
+
+
+
+
 
     return  ( <>
         <article className="goals">
+        <button className="button"
+                        onClick={() => {
+                            navigate(`/goals`)
+                        }}
+                        >Create Goal</button>
             {
                 goals.map(goal => {
                     return <section key={`goal--${goal.id}`} className="goal">
@@ -50,16 +59,42 @@ export const Homepage = (props) => {
         </article>
 
         <article className="routines">
+        <fieldset>
+                <div className="appointmentform-group">
+                    <label htmlFor="routine-dropdown"></label>
+                    <select
+                        onClick={evt => {
+                                getSingleRoutineByUser(user, evt.target.value)
+                                .then(data => setRoutines(data))
+                        }}
+                        >
+                    <option value={0} type="select" className="form-dropdown" required>Select Routine</option>
+                    {
+                        routineLists.map(
+                            (routine) => {
+                                return <option key={`routine--${routine.id}`} value={routine.name}>{routine.name}</option>
+                            }
+                        )
+                    }
+                    </select>
+                </div>
+            </fieldset>
         {
             routines.map(routine => {
                     return routine.exercise_routine.map(workout => {
                             return <section key={`exerciseRoutine--${workout.exercise.id}`} className="exerciseRoutine">
+                                <div className="routineName">Routine: {routine.name}</div>
                                 <div className="routine__exerciseRoutine">{workout.exercise.name}</div>
                                 <div className="routine__exerciseRoutine">{workout.exercise.description}</div>
                                 <video width="750" height="500" controls>
-      <source src={workout.exercise.video} />
-
-</video>
+        <source src={workout.exercise.video} />
+        </video>
+        <button 
+                onClick={evt => {
+                    UpdateExerciseRoutine(workout.id)
+                        .then(() => navigate("/exercises"))
+                }}
+                className="btn btn-primary">Replace Exercise</button>
                                 <div></div>
                             </section>
                         })
@@ -69,5 +104,4 @@ export const Homepage = (props) => {
         
 </>
 )
-} 
-
+}

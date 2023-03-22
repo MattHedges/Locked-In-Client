@@ -29,7 +29,7 @@ export const GoalForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="currentWeight">Current Weight in Pounds: </label>
-                    <input type="integer" name="Current Weight" required autoFocus className="form-control"
+                    <input type="integer" name="currentWeight" required autoFocus className="form-control"
                         onChange={changeGoalState}
                     />
                 </div>
@@ -37,7 +37,7 @@ export const GoalForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="description">Goal Weight: </label>
-                    <input type="integer" name="description" required className="form-control"
+                    <input type="integer" name="goalWeight" required className="form-control"
                         value={currentGoal.goalWeight}
                         onChange={changeGoalState}
                     />

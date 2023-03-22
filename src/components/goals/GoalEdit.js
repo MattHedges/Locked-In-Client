@@ -4,18 +4,21 @@ import { useNavigate } from "react-router-dom"
 import { createGoal } from "../../managers/GoalManager"
 import { UpdateGoal } from "../../managers/GoalManager"
 import { getSingleGoal } from "../../managers/GoalManager"
+import { Params, useParams } from "react-router"
 
 export const GoalEdit = () => {
     const navigate = useNavigate()
     const { goalId } = useParams()
+    const user = localStorage.getItem("user")
     const [currentGoal, setCurrentGoal] = useState({
+        user: user,
         currentWeight: "",
         goalWeight: "",
         timeframe: ""
     })
 
     useEffect(() => {
-        getSingleGoal().then(res => setCurrentGoal(res))
+        getSingleGoal(goalId).then(res => setCurrentGoal(res))
     }, [goalId])
 
 
@@ -26,52 +29,56 @@ export const GoalEdit = () => {
     }
 
     return (
-        <form className="goalForm">
-            <h2 className="goalForm__title">My New Goal</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="currentWeight">Current Weight in Pounds: </label>
-                    <input type="integer" name="Current Weight" required autoFocus className="form-control"
-                    value={currentGoal.currentWeight}
-                        onChange={changeGoalState}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="description">Goal Weight: </label>
-                    <input type="integer" name="description" required className="form-control"
-                        value={currentGoal.goalWeight}
-                        onChange={changeGoalState}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="description">Timeframe: </label>
-                    <input type="datefield" name="timeframe" required className="form-control"
-                        value={currentGoal.timeframe}
-                        onChange={changeGoalState}
-                    />
-                </div>
-            </fieldset>
+        <article>
 
-            <button type="submit"
-                onClick={evt => {
-                    // Prevent form from being submitted
-                    evt.preventDefault()
+            <form className="goalForm">
+                <h2 className="goalForm__title">My New Goal</h2>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="currentWeight">Current Weight in Pounds: </label>
+                        <input type="integer" name="currentWeight" required autoFocus className="form-control"
+                        value={currentGoal.currentWeight}
+                            onChange={changeGoalState}
+                        />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="description">Goal Weight: </label>
+                        <input type="integer" name="goalWeight" required className="form-control"
+                            value={currentGoal.goalWeight}
+                            onChange={changeGoalState}
+                        />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="description">Timeframe: </label>
+                        <input type="datefield" name="timeframe" required className="form-control"
+                            value={currentGoal.timeframe}
+                            onChange={changeGoalState}
+                        />
+                    </div>
+                </fieldset>
 
-                    const goal = {
-                        currentWeight: currentGoal.currentWeight,
-                        goalWeight: currentGoal.goalWeight,
-                        timeframe: currentGoal.timeframe
-                    }
+                <button type="submit"
+                    onClick={evt => {
+                        // Prevent form from being submitted
+                        evt.preventDefault()
 
-                    // Send POST request to your API
-                    UpdateGoal(goal)
-                        .then(() => navigate("/home"))
-                }}
-                className="btn btn-primary">Update</button>
-        </form>
+                        const goal = {
+                            user: parseInt(user),
+                            currentWeight: currentGoal.currentWeight,
+                            goalWeight: currentGoal.goalWeight,
+                            timeframe: currentGoal.timeframe
+                        }
+
+                        // Send POST request to your API
+                        UpdateGoal(goal, goalId)
+                            .then(() => navigate("/home"))
+                    }}
+                    className="btn btn-primary">Update</button>
+            </form>
+            </article>
     )
 }

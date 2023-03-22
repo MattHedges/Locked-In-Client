@@ -47,3 +47,21 @@ export const deleteRoutine = (id) => {
         }
     })
 }
+
+export const getRoutinesByUser = (id) => {
+    return fetch(`http://localhost:8000/routines?user=${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lockedin_user")}`
+        }
+    })
+        .then(response => response.json())
+}
+
+export const getSingleRoutineByUser = (id, name) => {
+    return fetch(`http://localhost:8000/routines?routineuser=${id}&routine=${name}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lockedin_user")}`
+        }
+    })
+        .then(response => response.json())
+}

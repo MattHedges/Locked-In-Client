@@ -8,7 +8,7 @@ export const createExerciseRoutine = (exerciseRoutine) => {
         body: JSON.stringify(exerciseRoutine)
     })
 }
-export const deleteExercise = (id) => {
+export const UpdateExerciseRoutine = (id) => {
     return fetch(`http://localhost:8000/exerciseRoutines/${id}`, 
     {
         method: "DELETE",
@@ -17,3 +17,4 @@ export const deleteExercise = (id) => {
         }
     })
 }
+
