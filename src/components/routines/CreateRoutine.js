@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { getExercises } from "../../managers/ExerciseManager"
 import { createRoutine } from "../../managers/RoutineManager"
-
 import { useNavigate } from "react-router-dom"
-import { createExerciseRoutine } from "../../managers/ExerciseRoutineManager"
+import "./CreateRoutine.css"
 
 export const CreateRoutine = (props) => {
     const navigate = useNavigate()
@@ -29,7 +28,7 @@ export const CreateRoutine = (props) => {
                         />
                     </div>
                 </fieldset> 
-                <button type="submit"
+                <button
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()

@@ -6,6 +6,7 @@ import { deleteGoal } from "../../managers/GoalManager"
 import { getSingleRoutine } from "../../managers/RoutineManager"
 import { UpdateExerciseRoutine } from "../../managers/ExerciseRoutineManager"
 import { deleteRoutine } from "../../managers/RoutineManager"
+import "./homepage.css"
 
 export const Homepage = (props) => {
     const navigate = useNavigate()
@@ -29,29 +30,30 @@ export const Homepage = (props) => {
 
     return  ( <>
         <article className="goals">
-        <button className="button"
-                        onClick={() => {
-                            navigate(`/goals`)
-                        }}
-                        >Create Goal</button>
+            <button className="btn btn-primary"
+                            onClick={() => {
+                                navigate(`/goals`)
+                            }}
+                            >Create Goal</button>
             {
                 goals.map(goal => {
                     return <section key={`goal--${goal.id}`} className="goal">
                         <div className="goal__currentWeight">Current Weight: {goal.currentWeight}</div>
                         <div className="goal__goalWeight">Goal Weight: {goal.goalWeight}</div>
                         <div className="goal__timeframe">Completion Date: {goal.timeframe}</div>
-                        <div className="goal__footer">
-                            <button
+                        
+                            
+                            <button className = "btn btn-primary"
                                 onClick={() => {
                                     navigate({ pathname: `/editgoal/${goal.id}`})
                                 }}>Edit</button>
-                        </div>
-                        <div className="goal__footer">
-                            <button
+                        
+                            <button className="btn btn-primary"
                                 onClick={() => {
                                     deleteGoal(goal.id)
                                     .then(window.location.reload(false))
                                 }}>Delete</button>
+                        <div className="goal__footer">
                         </div>
                     </section>
                 })
@@ -60,7 +62,7 @@ export const Homepage = (props) => {
 
         <article className="routines">
         <fieldset>
-                <div className="appointmentform-group">
+                <div className="routineform-group">
                     <label htmlFor="routine-dropdown"></label>
                     <select
                         onClick={evt => {
@@ -68,7 +70,7 @@ export const Homepage = (props) => {
                                 .then(data => setRoutines(data))
                         }}
                         >
-                    <option value={0} type="select" className="form-dropdown" required>Select Routine</option>
+                    <option value={0} type="select" className="routine-dropdown" required>Select Routine</option>
                     {
                         routineLists.map(
                             (routine) => {
@@ -83,12 +85,10 @@ export const Homepage = (props) => {
             routines.map(routine => {
                     return routine.exercise_routine.map(workout => {
                             return <section key={`exerciseRoutine--${workout.exercise.id}`} className="exerciseRoutine">
-                                <div className="routineName">Routine: {routine.name}</div>
-                                <div className="routine__exerciseRoutine">{workout.exercise.name}</div>
-                                <div className="routine__exerciseRoutine">{workout.exercise.description}</div>
-                                <video width="750" height="500" controls>
-        <source src={workout.exercise.video} />
-        </video>
+                                <div className="routineName">Routine: {routine.name}</div> 
+                                <div className="routine__exerciseName">{workout.exercise.name}</div>
+                                <div className="routine__exerciseDescription">{workout.exercise.description}</div>
+                                <a href={workout.exercise.video} className="btn btn-primary" target="_blank">Form Demonstration</a>
         <button 
                 onClick={evt => {
                     UpdateExerciseRoutine(workout.id)

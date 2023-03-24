@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManager"
+import "./Login.css"
 
 
 
@@ -30,6 +31,7 @@ export const Login = () => {
     }
 
     return (
+        
         <main className="container--login">
             <dialog className="dialog dialog--auth" ref={invalidDialog}>
                 <div>Username or password was not valid.</div>
@@ -37,7 +39,7 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
+                    <h1>Locked In</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputUsername"> Username </label>
@@ -50,12 +52,12 @@ export const Login = () => {
                     <fieldset style={{
                         textAlign: "center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        <button className="btn btn-1 btn-sep icon-send" >Sign In</button>
                     </fieldset>
                 </form>
-            </section>
             <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
+                <Link to="/register">Register</Link>
+            </section>
             </section>
         </main>
     )

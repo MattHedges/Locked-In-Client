@@ -4,6 +4,7 @@ import { createExercise } from "../../managers/ExerciseManager"
 import { getEquipment } from "../../managers/EquipmentManager"
 import { getDifficulty } from "../../managers/DifficultyManager"
 import { getMuscleGroups } from "../../managers/ExerciseManager"
+import "./Contribute.css"
 
 
 
@@ -72,7 +73,7 @@ export const ContributeForm = () => {
                             copy.difficulty = parseInt(event.target.value)
                             setCurrentExercise(copy)
                         }}>
-                        <option value="0">Choose Difficulty:</option>
+                        <option value="0"></option>
                         {difficulty.map(difficulty => ( 
                                     <option key={`difficulty--${difficulty.id}`} value={difficulty.id} name={difficulty.description}>{difficulty.description}</option>                         
                             ))}
@@ -92,7 +93,7 @@ export const ContributeForm = () => {
                             copy.muscleGroup = parseInt(event.target.value)
                             setCurrentExercise(copy)
                         }}>
-                        <option value="0">Choose Muscle Group:</option>
+                        <option value="0"></option>
                         {muscleGroups.map(muscleGroup => ( 
                                     <option key={`muscleGroup--${muscleGroup.id}`} value={muscleGroup.id} name={muscleGroup.muscle}>{muscleGroup.muscle}</option>                         
                             ))}
@@ -112,7 +113,7 @@ export const ContributeForm = () => {
                             copy.equipment = parseInt(event.target.value)
                             setCurrentExercise(copy)
                         }}>
-                        <option value="0">Choose:</option>
+                        <option value="0"></option>
                         {equipment.map(equipment => ( 
                                     <option key={`equipment--${equipment.id}`} value={equipment.id} name={equipment.name}>{equipment.name}</option>                         
                             ))}
@@ -130,7 +131,7 @@ export const ContributeForm = () => {
             </fieldset>
 
 
-            <button type="submit"
+            <button 
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -149,7 +150,7 @@ export const ContributeForm = () => {
                     createExercise(exercise)
                         .then(() => navigate("/exercises"))
                 }}
-                className="btn btn-primary">Create</button>
+                className="createroutine">Create</button>
         </form>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { getExercises, getMuscleGroups, getSingleMuscleGroups } from "../../managers/ExerciseManager"
 import { getRoutinesByUser } from "../../managers/RoutineManager"
-
+import "./exercises.css"
 import { useNavigate } from "react-router-dom"
 import { createExerciseRoutine } from "../../managers/ExerciseRoutineManager"
 
@@ -69,17 +69,18 @@ export const ExerciseList = (props) => {
                 exercises.map(exercise => {
                     return <section key={`exercise--${exercise.id}`} className="exercise">
                         
-                        <div className="exercise__title">Exercise Name: {exercise.name}</div>
-                        <p className="exercise__players">Exercise Description: {exercise.description}</p>
-                        <div className="exercise__game">Difficulty: {exercise.difficulty.description}</div>
-                        <div className="exercise__datetime">Targeted Muscle Group: {exercise.muscleGroup.muscle}</div>
-                        <div className="exercise__datetime">Equipment Needed: {exercise.equipment.name}</div>
-                        <div className="exercise__datetime">Form Demonstration: {exercise.video}</div>
+                        <div className="exercise__title">Exercise: {exercise.name}</div><br></br>
+                        <p className="exercise__description">Description:<br></br> {exercise.description}</p><br></br>
+                        <div className="exercise__difficulty">Difficulty: {exercise.difficulty.description}</div><br></br>
+                        <div className="exercise__musclegroup">Muscle Group: {exercise.muscleGroup.muscle}</div><br></br>
+                        <div className="exercise__equipment">Equipment Needed: {exercise.equipment.name}</div><br></br>
+                        <a href={exercise.video} className="btn btn-2 btn-sep icon-create" target="_blank">Form Demonstration</a>
+                        
                         {
                             <fieldset>
                                 <div className="form-group">
                                 <label htmlFor="routine-dropdown"></label>
-                                <select
+                                <select className="dropdown"
                                 onChange={(evt) => {
                                     const copy = {...setExerciseRoutines}
                                     copy.exercise = exercise.id

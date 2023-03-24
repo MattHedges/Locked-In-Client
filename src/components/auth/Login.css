@@ -1,62 +1,118 @@
-.h1, h1 {
-    font-size: 2.5rem;
-}
 
-fieldset {
-    min-width: 0;
-    padding: 1rem 0;
-    margin: 0;
-    border: 0;
-}
-
-.form--login {
-    display: inline-block;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.form--login > fieldset > input[type="email"] {
-    width: 25em;
-}
-
-.label--login {
-    width: 8rem;
-    display: inline-block;
-}
-
-.form-control {
-    display: block;
-    width: 94%;
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
+/* Style the container */
 .container--login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+  }
+  
+  /* Style the form and dialog */
+  .dialog--auth, .form--login {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .form--login {
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .dialog--auth {
+    max-width: 300px;
+  }
+  
+  .dialog--auth div {
+    margin-bottom: 10px;
+  }
+  
+  .button--close {
+    background-color: #f7f7f7;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+  }
+  
+  /* Style the headings */
+  .form--login h1, .form--login h2 {
+    font-weight: normal;
+    margin: 0;
+  }
+  
+  .form--login h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .form--login h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the form fields */
+  .form--login fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .form--login label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .form-control:focus {
+    border-color: #5c6ac4;
+    box-shadow: 0 0 0 2px rgba(92, 106, 196, 0.5);
+  }
+  
+  /* Style the sign-in button */
+  .btn {
+    background-color: #ba1010;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #920000;
+  }
+  
+  /* Style the registration link */
+  .link--register {
+    margin-top: 20px;
     text-align: center;
-}
-
-.form--login {
-    background-position-x: right;
-    z-index: 1;
-    min-height: 25rem;
-    min-width: 45rem;
-    background-color: hsla(0,0%,100%,0.40);
-    background-blend-mode: overlay;
-    background-repeat: no-repeat;
-}
-
-.button--close {
-    position: relative;
-    bottom: -2rem;
-}
-
+  }
+  
+  .link--register a {
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .link--register a:hover {
+    color: #34495e;
+  }

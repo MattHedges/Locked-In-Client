@@ -1,15 +1,24 @@
 .navbar {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: left;
-}
-
-.navbar__item {
-    flex-basis: 20%;
-    list-style-type: none;
-}
-
-.navbar__logout {
-    margin-left: auto;
-}
-
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: .3rem;
+  }
+  
+  .navbar__item {
+    margin-right: 1rem;
+  }
+  
+  .navbar__link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+  
+  .navbar__link:hover {
+    background-color: #ba1010;
+    border-radius: 1rem;
+    width: 25%;
+  }

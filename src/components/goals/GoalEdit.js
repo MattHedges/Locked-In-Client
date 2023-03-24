@@ -5,6 +5,7 @@ import { createGoal } from "../../managers/GoalManager"
 import { UpdateGoal } from "../../managers/GoalManager"
 import { getSingleGoal } from "../../managers/GoalManager"
 import { Params, useParams } from "react-router"
+import "./GoalEdit.css"
 
 export const GoalEdit = () => {
     const navigate = useNavigate()
@@ -61,7 +62,7 @@ export const GoalEdit = () => {
                     </div>
                 </fieldset>
 
-                <button type="submit"
+                <button
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()

@@ -3,6 +3,7 @@ import { getGoals } from "../../managers/GoalManager"
 import { getRoutines } from "../../managers/RoutineManager"
 import { useNavigate } from "react-router-dom"
 import { createGoal } from "../../managers/GoalManager"
+import "./GoalForm.css"
 
 export const GoalForm = () => {
     const navigate = useNavigate()
@@ -47,12 +48,13 @@ export const GoalForm = () => {
                 <div className="form-group">
                     <label htmlFor="description">Timeframe: </label>
                     <input type="datefield" name="timeframe" required className="form-control"
+                    placeholder= "yyyy-mm-dd"
                         onChange={changeGoalState}
                     />
                 </div>
             </fieldset>
 
-            <button type="submit"
+            <button
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
+import "./Register.css"
 
 
 export const Register = () => {
@@ -75,18 +76,18 @@ export const Register = () => {
                 </fieldset>
                 
 
-
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                    <button className="btn btn-1 btn-sep icon-send" >Register</button>
                 </fieldset>
 
+
                 
-            </form>
             <section className="link--register">
                 Already registered? <Link to="/login">Login</Link>
             </section>
+            </form>
         </main>
     )
 }
