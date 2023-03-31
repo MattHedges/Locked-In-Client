@@ -8,6 +8,8 @@ import { UpdateExerciseRoutine } from "../../managers/ExerciseRoutineManager"
 import { deleteRoutine } from "../../managers/RoutineManager"
 import "./homepage.css"
 
+// add a section that shows a users contributions to the site. 
+
 export const Homepage = (props) => {
     const navigate = useNavigate()
     const [ goals, setGoals ] = useState([])

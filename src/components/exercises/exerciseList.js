@@ -5,6 +5,9 @@ import "./exercises.css"
 import { useNavigate } from "react-router-dom"
 import { createExerciseRoutine } from "../../managers/ExerciseRoutineManager"
 
+
+// add a message to show users that they have successfully added an exercise to their routine. 
+
 export const ExerciseList = (props) => {
     const [ exercises, setExercises ] = useState([])
     const [ muscleGroups, setMuscleGroups ] = useState([])
