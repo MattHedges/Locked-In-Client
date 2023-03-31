@@ -7,6 +7,7 @@ import { createExerciseRoutine } from "../../managers/ExerciseRoutineManager"
 
 
 // add a message to show users that they have successfully added an exercise to their routine. 
+// add the musculatory clickable system to replace the drop down menu of muscle groups
 
 export const ExerciseList = (props) => {
     const [ exercises, setExercises ] = useState([])
