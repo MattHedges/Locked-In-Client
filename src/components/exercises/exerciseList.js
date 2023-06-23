@@ -74,7 +74,7 @@ export const ExerciseList = (props) => {
                     return <section key={`exercise--${exercise.id}`} className="exercise">
                         
                         <div className="exercise__title">{exercise.name}</div><br></br>
-                        <p className="exercise__description">How to:<br></br> {exercise.description1}</p><br></br>
+                        <p className="exercise__description">How To:<br></br> {exercise.description1}</p><br></br>
                         <p className="exercise__description"><br></br> {exercise.description2}</p><br></br>
                         <p className="exercise__description"><br></br> {exercise.description3}</p><br></br>
                         <p className="exercise__description"><br></br> {exercise.description4}</p>
