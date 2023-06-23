@@ -73,8 +73,11 @@ export const ExerciseList = (props) => {
                 exercises.map(exercise => {
                     return <section key={`exercise--${exercise.id}`} className="exercise">
                         
-                        <div className="exercise__title">Exercise: {exercise.name}</div><br></br>
-                        <p className="exercise__description">Description:<br></br> {exercise.description}</p><br></br>
+                        <div className="exercise__title">{exercise.name}</div><br></br>
+                        <p className="exercise__description">How to:<br></br> {exercise.description1}</p><br></br>
+                        <p className="exercise__description"><br></br> {exercise.description2}</p><br></br>
+                        <p className="exercise__description"><br></br> {exercise.description3}</p><br></br>
+                        <p className="exercise__description"><br></br> {exercise.description4}</p>
                         <div className="exercise__difficulty">Difficulty: {exercise.difficulty.description}</div><br></br>
                         <div className="exercise__musclegroup">Muscle Group: {exercise.muscleGroup.muscle}</div><br></br>
                         <div className="exercise__equipment">Equipment Needed: {exercise.equipment.name}</div><br></br>

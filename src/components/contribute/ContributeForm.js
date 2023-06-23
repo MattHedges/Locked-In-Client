@@ -54,9 +54,36 @@ export const ContributeForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="description"> Description: </label>
+                    <label htmlFor="description"> Step 1: </label>
                     <input type="text" name="description" required className="form-control"
-                        value={currentExercise.description}
+                        value={currentExercise.description1}
+                        onChange={changeExerciseState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="description"> Step 2: </label>
+                    <input type="text" name="description" required className="form-control"
+                        value={currentExercise.description2}
+                        onChange={changeExerciseState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="description"> Step 3: </label>
+                    <input type="text" name="description" required className="form-control"
+                        value={currentExercise.description3}
+                        onChange={changeExerciseState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="description"> Step 4: </label>
+                    <input type="text" name="description" required className="form-control"
+                        value={currentExercise.description4}
                         onChange={changeExerciseState}
                     />
                 </div>
@@ -138,8 +165,10 @@ export const ContributeForm = () => {
 
                     const exercise = {
                         name: currentExercise.name,
-                        description: currentExercise.description,
-                        genre: currentExercise.genre,
+                        Step1: currentExercise.description1,
+                        Step2: currentExercise.description2,
+                        Step3: currentExercise.description3,
+                        Step4: currentExercise.description4,
                         muscleGroup: currentExercise.muscleGroup,
                         difficulty: currentExercise.difficulty,
                         equipment: currentExercise.equipment,
