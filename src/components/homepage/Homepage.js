@@ -3,13 +3,14 @@ import { getGoals, getGoalsByUser } from "../../managers/GoalManager"
 import { getRoutinesByUser, getSingleRoutineByUser } from "../../managers/RoutineManager"
 import { useNavigate } from "react-router-dom"
 import { deleteGoal } from "../../managers/GoalManager"
-import { getSingleRoutine } from "../../managers/RoutineManager"
+// import { getSingleRoutine } from "../../managers/RoutineManager"
 import { UpdateExerciseRoutine } from "../../managers/ExerciseRoutineManager"
-import { deleteRoutine } from "../../managers/RoutineManager"
+// import { deleteRoutine } from "../../managers/RoutineManager"
 import "./homepage.css"
 
 // add a section that shows a users contributions to the site. 
-
+// getRoutinesByUser
+// getSingleRoutineByUser
 export const Homepage = (props) => {
     const navigate = useNavigate()
     const [ goals, setGoals ] = useState([])

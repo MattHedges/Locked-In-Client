@@ -96,3 +96,79 @@ body {
     flex-direction: column;
     align-items: center;
   }
+
+/* Muscle Front Groups*/
+
+#abdominals path {
+  fill: aqua;
+}
+
+g:hover #abdominals path {
+  fill: #920000;
+}
+
+#obliques path {
+  fill: aqua;
+}
+
+#forearms path {
+  fill: aqua;
+}
+
+#biceps path {
+  fill: aqua;
+}
+
+#shoulders path {
+  fill: aqua;
+}
+
+#trapezius path {
+  fill: aqua;
+}
+
+#chest path {
+  fill: aqua;
+}
+
+#quadriceps path {
+  fill: aqua;
+}
+
+/* Excluded Front Muscle Groups */
+#inner-thigh path, #hands path, #calves path, #tibialis path, #soleus path {
+  fill: transparent;
+}
+
+/* Muscle Back Groups */
+
+#calves path {
+  fill: aqua;
+}
+
+#lats path {
+  fill: aqua;
+}
+
+#lowerback path {
+  fill: aqua;
+}
+
+#hamstrings path {
+  fill: aqua;
+}
+#posterior-deltoid path {
+  fill: aqua;
+}
+
+#triceps path {
+  fill: aqua;
+}
+
+#glutes path {
+  fill: aqua;
+}
+/*  Excluded Back Muscle Groups */
+#traps-middle path, #lower-trapezius path {
+  fill: transparent;
+}

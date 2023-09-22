@@ -1,55 +1,66 @@
-import React, { useEffect, useState } from "react"
-import { getExercises, getMuscleGroups, getSingleMuscleGroups } from "../../managers/ExerciseManager"
-import { getRoutinesByUser } from "../../managers/RoutineManager"
-import "./exercises.css"
-import { useNavigate } from "react-router-dom"
-import { createExerciseRoutine } from "../../managers/ExerciseRoutineManager"
+import React, { useEffect, useState } from "react";
+import {
+  getExercises,
+  getMuscleGroups,
+  getSingleMuscleGroups,
+} from "../../managers/ExerciseManager";
+import { getRoutinesByUser } from "../../managers/RoutineManager";
+import "./exercises.css";
+import { useNavigate } from "react-router-dom";
+import { createExerciseRoutine } from "../../managers/ExerciseRoutineManager";
+import { Box } from "@mui/material";
+// Import SVG of muscle groups here
+// import {ReactComponent as BodyFront } from "./muscle_man_front.svg";
+// import {ReactComponent as BodyBack } from "./muscle_man_back.svg";
+import { BodySwitch } from "./components/BodySwitch";
 
-
-// add a message to show users that they have successfully added an exercise to their routine. 
+// add a message to show users that they have successfully added an exercise to their routine.
 // add the musculatory clickable system to replace the drop down menu of muscle groups
 
 export const ExerciseList = (props) => {
-    const [ exercises, setExercises ] = useState([])
-    const [ muscleGroups, setMuscleGroups ] = useState([])
-    const user = localStorage.getItem("user")
-    const navigate = useNavigate()
-    const [ routines, setRoutines ] = useState([
-        {
-            id: 0,
-            name: ""
-        }
-    ])
-    const [ exerciseRoutines, setExerciseRoutines ] = useState({
-        exercise: 0,
-        routine: 0
-    })
+  const [exercises, setExercises] = useState([]);
+  const [muscleGroups, setMuscleGroups] = useState([]);
+  const user = localStorage.getItem("user");
+  const navigate = useNavigate();
+  const [routines, setRoutines] = useState([
+    {
+      id: 0,
+      name: "",
+    },
+  ]);
+  const [exerciseRoutines, setExerciseRoutines] = useState({
+    exercise: 0,
+    routine: 0,
+  });
 
-    useEffect(() => {
-        getRoutinesByUser(user).then(data => setRoutines(data))
-    }, [])
+  useEffect(() => {
+    getRoutinesByUser(user).then((data) => setRoutines(data));
+  }, []);
 
-    useEffect(() => {
-        createExerciseRoutine().then(data => setExerciseRoutines(data))
-    }, [])
+  useEffect(() => {
+    createExerciseRoutine().then((data) => setExerciseRoutines(data));
+  }, []);
 
-    useEffect(() => {
-        getMuscleGroups().then(data => setMuscleGroups(data))
-    }, [])
+  useEffect(() => {
+    getMuscleGroups().then((data) => setMuscleGroups(data));
+  }, []);
 
-    const handleClick = (newExerciseRoutine) => {
-        createExerciseRoutine(newExerciseRoutine)
-        // getExercises().then(data => setExercises(data))
-        // getRoutinesByUser(user).then(data => setRoutines(data))
-    }
-    return (
-        <article className="exercises">
-            <button className="btn btn-2 btn-sep icon-create"
-                        onClick={() => {
-                            navigate(`/createroutine`)
-                        }}
-                        >Create Routine</button>
-            <fieldset>
+  const handleClick = (newExerciseRoutine) => {
+    createExerciseRoutine(newExerciseRoutine);
+    // getExercises().then(data => setExercises(data))
+    // getRoutinesByUser(user).then(data => setRoutines(data))
+  };
+  return (
+    <article className="exercises">
+      <button
+        className="btn btn-2 btn-sep icon-create"
+        onClick={() => {
+          navigate(`/createroutine`);
+        }}
+      >
+        Create Routine
+      </button>
+      {/* <fieldset>
                 <div className="muscleform-group">
                     <label htmlFor="muscleGroup-dropdown"></label>
                     <select
@@ -68,50 +79,95 @@ export const ExerciseList = (props) => {
                     }
                     </select>
                 </div>
-            </fieldset>
+            </fieldset> */}
+      <Box
+        sx={{
+          display: "flex",
+          height: "100vh",
+          justifyContent: "center",
+        }}
+      >
+        <BodySwitch />
+      </Box>
+      {exercises.map((exercise) => {
+        return (
+          <section key={`exercise--${exercise.id}`} className="exercise">
+            <div className="exercise__title">{exercise.name}</div>
+            <br></br>
+            <p className="exercise__description">
+              How To:<br></br> {exercise.description1}
+            </p>
+            <br></br>
+            <p className="exercise__description">
+              <br></br> {exercise.description2}
+            </p>
+            <br></br>
+            <p className="exercise__description">
+              <br></br> {exercise.description3}
+            </p>
+            <br></br>
+            <p className="exercise__description">
+              <br></br> {exercise.description4}
+            </p>
+            <div className="exercise__difficulty">
+              Difficulty: {exercise.difficulty.description}
+            </div>
+            <br></br>
+            <div className="exercise__musclegroup">
+              Muscle Group: {exercise.muscleGroup.muscle}
+            </div>
+            <br></br>
+            <div className="exercise__equipment">
+              Equipment Needed: {exercise.equipment.name}
+            </div>
+            <br></br>
+            <a
+              href={exercise.video}
+              className="btn btn-2 btn-sep icon-create"
+              target="_blank"
+            >
+              Form Demonstration
+            </a>
+
             {
-                exercises.map(exercise => {
-                    return <section key={`exercise--${exercise.id}`} className="exercise">
-                        
-                        <div className="exercise__title">{exercise.name}</div><br></br>
-                        <p className="exercise__description">How To:<br></br> {exercise.description1}</p><br></br>
-                        <p className="exercise__description"><br></br> {exercise.description2}</p><br></br>
-                        <p className="exercise__description"><br></br> {exercise.description3}</p><br></br>
-                        <p className="exercise__description"><br></br> {exercise.description4}</p>
-                        <div className="exercise__difficulty">Difficulty: {exercise.difficulty.description}</div><br></br>
-                        <div className="exercise__musclegroup">Muscle Group: {exercise.muscleGroup.muscle}</div><br></br>
-                        <div className="exercise__equipment">Equipment Needed: {exercise.equipment.name}</div><br></br>
-                        <a href={exercise.video} className="btn btn-2 btn-sep icon-create" target="_blank">Form Demonstration</a>
-                        
-                        {
-                            <fieldset>
-                                <div className="form-group">
-                                <label htmlFor="routine-dropdown"></label>
-                                <select className="dropdown"
-                                onChange={(evt) => {
-                                    const copy = {...setExerciseRoutines}
-                                    copy.exercise = exercise.id
-                                    copy.routine= parseInt(evt.target.value)
-                                    
-                                    handleClick(copy)}}>
-                                        
-                                <option value={0} type="select" className="form-dropdown" required>Select a Routine</option>
-                                {
-                                    routines.map(
-                                        (routine) => {
-                                            return <option 
-                                            key={`routine--${routine.id}`} value={routine.id}>{routine.name}</option>
-                                        }
-                                    )
-                                }
-                                </select>
-                            </div>
-                        </fieldset>
-                        }
-                    
-                    </section>
-                })
+              <fieldset>
+                <div className="form-group">
+                  <label htmlFor="routine-dropdown"></label>
+                  <select
+                    className="dropdown"
+                    onChange={(evt) => {
+                      const copy = { ...setExerciseRoutines };
+                      copy.exercise = exercise.id;
+                      copy.routine = parseInt(evt.target.value);
+
+                      handleClick(copy);
+                    }}
+                  >
+                    <option
+                      value={0}
+                      type="select"
+                      className="form-dropdown"
+                      required
+                    >
+                      Select a Routine
+                    </option>
+                    {routines.map((routine) => {
+                      return (
+                        <option
+                          key={`routine--${routine.id}`}
+                          value={routine.id}
+                        >
+                          {routine.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </fieldset>
             }
-        </article>
-    )
-}
+          </section>
+        );
+      })}
+    </article>
+  );
+};
